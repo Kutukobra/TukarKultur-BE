@@ -1,15 +1,15 @@
-package main
+package handler
 
 import (
 	"log"
 	"net/http"
 	"os"
-	"tukarkultur/api/chat_socket"
-	"tukarkultur/api/database"
-	"tukarkultur/api/handlers"
-	"tukarkultur/api/repository"
-	"tukarkultur/api/routes"
-	"tukarkultur/api/services"
+	"tukarkultur/pkg/chat_socket"
+	"tukarkultur/pkg/database"
+	"tukarkultur/pkg/handlers"
+	"tukarkultur/pkg/repository"
+	"tukarkultur/pkg/routes"
+	"tukarkultur/pkg/services"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
