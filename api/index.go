@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net/http"
 	"os"
 	"tukarkultur/api/chat_socket"
 	"tukarkultur/api/database"
@@ -14,7 +15,9 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func main() {
+var engine = setup()
+
+func setup() *gin.Engine {
 	// Load environment variables
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found, using system environment variables")
@@ -85,4 +88,10 @@ func main() {
 	log.Printf("Server starting on port %s", port)
 	log.Printf("Health check: http://localhost:%s/api/v1/health", port)
 	log.Fatal(router.Run(":" + port))
+
+	return router
+}
+
+func Handler(w http.ResponseWriter, req *http.Request) {
+	engine.ServeHTTP(w, req)
 }
